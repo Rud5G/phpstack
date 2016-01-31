@@ -1,11 +1,13 @@
-# PHPStack
+# PHP Dockerized
 
-PHPStack gives you everything you need for developing PHP applications locally. The idea came from the need of having an OS-agnostic and virtualized alternative to the great [MNPP](http://getmnpp.org/) stack as regular LAMP stacks quite simply can't keep up with the Nginx + PHP-FPM/HHVM combo in terms of performance. I hope you'll find it as useful an addition to your dev-arsenal as I've found it!
+> Dockerized PHP development stack: Nginx, MySQL, MongoDB, PHP-FPM, HHVM, Memcached, Redis, and Elasticsearch
+
+[![Build Status](https://travis-ci.org/kasperisager/php-dockerized.svg)](https://travis-ci.org/kasperisager/php-dockerized)
+
+PHP Dockerized gives you everything you need for developing PHP applications locally. The idea came from the need of having an OS-agnostic and virtualized alternative to the great [MNPP](https://github.com/jyr/MNPP) stack as regular LAMP stacks quite simply can't keep up with the Nginx + PHP-FPM/HHVM combo in terms of performance. I hope you'll find it as useful an addition to your dev-arsenal as I've found it!
 
 ## What's inside
 
-* [CoreOS](https://coreos.com/) (optional)
-* [Shipyard](http://shipyard-project.com/)
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
 * [MongoDB](http://www.mongodb.org/)
@@ -15,36 +17,22 @@ PHPStack gives you everything you need for developing PHP applications locally. 
 * [Redis](http://redis.io/)
 * [Elasticsearch](http://www.elasticsearch.org/)
 
-## Getting started
+## Requirements
 
-### Requirements
+* [Docker Engine](https://docs.docker.com/installation/)
+* [Docker Compose](https://docs.docker.com/compose/)
+* [Docker Machine](https://docs.docker.com/machine/) (Mac and Windows only)
 
-* [Docker](https://docker.com/)
-* [Docker Compose](http://docs.docker.com/compose/)
-* [Vagrant](http://www.vagrantup.com/) (optional)
-* [VirtualBox](https://www.virtualbox.org/) (optional)
+## Running
 
-### Instructions
+Set up a Docker Machine and then run:
 
 ```sh
-# Clone the repository (using hub)
-$ git clone kasperisager/phpstack
-$ cd phpstack
-
-# (Optional) Boot up a CoreOS box
-$ vagrant up
-
-# Boot up the Docker containers
-$ sudo docker-compose up
+$ docker-compose up
 ```
 
-> If you're using the CoreOS box, make sure to set your `DOCKER_HOST` so Docker Compose knows where to boot up the Docker containers.
+That's it! You can now access your configured sites via the IP address of the Docker Machine or locally if you're running a Linux flavour and using Docker natively.
 
-Once everything is up and running, you can access Shipyard at `http://<IP>:8080`. When Docker starts, it creates a virtual interface named *docker0* on the host machine. The referenced IP will be the address of that interface.  It can be obtained by running the command `ip addr show dev docker0`.
+## License
 
-The default user credentials are `admin:shipyard`. Once logged in, you will need to [add an engine](http://shipyard-project.com/docs/engines/) with an address of `http://<IP>:2375` to see the local containers.
-
-The IP is in both cases either `127.0.0.1` or your Vagrant IP (`192.168.33.10` by default).
-
----
-Copyright &copy; 2014-2015 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT License](LICENSE.md).
+Copyright &copy; 2014-2016 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT license](LICENSE.md).
